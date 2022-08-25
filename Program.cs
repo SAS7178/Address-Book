@@ -16,7 +16,9 @@ class Program
     {
               public string FirstName { get; set; }
             public string LastName { get; set; }
-            
+            //in progress......................................................
+            // public string FullName()
+            // {$"{FirstName} + {LastName}"}
             public string Email { get; set; }
             public string Address { get; set; }
     }
@@ -53,15 +55,21 @@ class Program
         };
 
 
+       
         // Create an AddressBook and add some contacts to it
         AddressBook addressBook = new AddressBook();
+        
         addressBook.AddContact(bob);
         addressBook.AddContact(sue);
         addressBook.AddContact(juan);
-
+     
         // Try to addd a contact a second time
+        try{
         addressBook.AddContact(sue);
-
+      } catch (ArgumentException) 
+        {
+            Console.WriteLine("Account with this email already exist!");
+        }
 
         // Create a list of emails that match our Contacts
         List<string> emails = new List<string>() {
@@ -76,12 +84,18 @@ class Program
 
         //  Search the AddressBook by email and print the information about each Contact
         foreach (string email in emails)
+        try{
         {
             Contact contact = addressBook.GetByEmail(email);
             Console.WriteLine("----------------------------");
-            Console.WriteLine($"Name: {contact.FullName}");
+            //Changed from Fullname to First
+            Console.WriteLine($"Name: {contact.FirstName}");
             Console.WriteLine($"Email: {contact.Email}");
             Console.WriteLine($"Address: {contact.Address}");
+        }
+        } catch (KeyNotFoundException) 
+        {
+                Console.WriteLine("Email not found!");
         }
     }
 }
