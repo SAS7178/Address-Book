@@ -17,10 +17,15 @@ class Program
               public string FirstName { get; set; }
             public string LastName { get; set; }
             //in progress......................................................
-            // public string FullName()
-            // {$"{FirstName} + {LastName}"}
             public string Email { get; set; }
             public string Address { get; set; }
+
+            public string FullName
+            {
+                get {
+                    return $"{FirstName} {LastName}";
+                }
+            }
     }
     public class AddressBook
     {
@@ -89,7 +94,7 @@ class Program
             Contact contact = addressBook.GetByEmail(email);
             Console.WriteLine("----------------------------");
             //Changed from Fullname to First
-            Console.WriteLine($"Name: {contact.FirstName}");
+            Console.WriteLine($"Name: {contact.FullName}");
             Console.WriteLine($"Email: {contact.Email}");
             Console.WriteLine($"Address: {contact.Address}");
         }
